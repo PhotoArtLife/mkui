@@ -1,0 +1,146 @@
+/*
+* @Author: PhotoArtLife
+* @Date:   2017-08-10 14:15:58
+* @Last Modified by:   PhotoArtLife
+* @Last Modified time: 2017-09-10 12:48:54
+*/
+//各种浏览器前缀
+@mixin prefix($property, $value) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+//clearfix清除浮动
+@mixin clearfix {
+  zoom: 1;
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+  }
+}
+//rotate
+@mixin rotate ($deg) {
+  @include prefix(transform,rotate($deg));
+}
+// input status
+// == when focus or actived
+@mixin active($color: $outline-color) {
+  border-color: $color;
+  outline: 0;
+  box-shadow: 0 0 $outline-blur-size $outline-width fade($color, 20%);
+}
+
+// == when hoverd
+@mixin hover($color: $input-hover-border-color) {
+  border-color:$color;
+}
+//
+@mixin disabled() {
+  background-color: $input-disabled-bg;
+  opacity: 1;
+  cursor: not-allowed;
+  color: $disabled-color;
+  &:hover {
+    @include hover($input-border-color);
+  }
+}
+//open or close arrow
+@mixin shrinkage-close() {
+  @include iconfont-size-under-12px(9px, 0);
+}
+@mixin shrinkage-open() {
+  @include iconfont-size-under-12px(9px, 90deg);
+}
+//iconfont
+@mixin iconfont-mixin() {
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &:before {
+    display: block;
+    font-family: "aicon" !important;
+  }
+}
+
+@mixin iconfont-font($content) {
+  font-family: 'aicon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: $content;
+}
+// fix chrome 12px bug, support ie
+@mixin iconfont-size-under-12px($size, $rotate: 0deg) {
+  display: inline-block;
+  font-size: $font-size-base;
+  // ie8-9
+  //font-size: unit($size / 9);
+  transform: scale(.9) rotate($rotate);
+  @include ie-rotate-via-degrees($rotate);
+  :root & {
+    font-size: $font-size-base + 0.08rem; // reset ie9 and above
+  }
+}
+//special border-radius circle
+@mixin roundBox {
+  $radius: 50%;
+  @include prefix(border-radius,$radius)
+}
+// Sizing shortcuts
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+@mixin square($size) {
+  @include size($size,$size);
+}
+
+// Placeholder text
+@mixin placeholder($color: $input-placeholder-color) {
+  //Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  // Internet Explorer 10+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+  // Safari and Chrome
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+}
+// rotate for ie8 and blow
+@mixin ie-rotate($rotation) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=@{rotation})";
+}
+
+// rotate for ie8 and blow
+// degrees unit
+@mixin ie-rotate-via-degrees($degrees) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=@{costheta}, M12=@{negsintheta}, M21=@{sintheta}, M22=@{costheta})";
+  zoom: 1;
+  :root & {
+    filter: none;
+  }
+}
+
+//checkbox
+@mixin opacity($opactity) {
+	opactity: $opactity;
+	//ie8 filter
+}

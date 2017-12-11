@@ -1,0 +1,236 @@
+/**
+ * Copyright (c) 2017-Now AiDigger, All rights reseved.
+ * @fileoverview AiDigger FE-路由入口
+ * @author Mich | kuashi.mu@aidigger.com/mukuashi@icloud.com
+ * @version 1.0 | 2017-7-18 // Initial version.
+ * @version 1.1 | 2017-7-19  // Modal-Popover and so on componnents
+ * @version 1.2 | 2017-7-20  // Input component and so on
+ * @version 1.3 | 2017-7-22   // some components add some prefix and common mixin
+ * @version 1.4 | 2017-7-26   // input and number mixin
+**/
+// =============================================================================
+//import mixins
+@import 'mixins';
+//default common
+$default-color: #2e6fd9;
+$default-light-color: #26b2f7;
+$default-font-color: #323232;
+$default-info-color: #2e3037;
+$default-dark-color: #040404;
+$default-border-color: #979797;
+$default-border-light-color: #e7e7eb;
+$default-border-heavy-color: #6d6d6d;
+
+$default-line-color: #dce0e6;
+$text-color: #77828a;;
+
+//Box
+$span-color: #b9bcbf;
+$header-color: #5e676d;
+$table-color: #5e676d;
+$line-color: #edeff2;
+$header-abstract-color: #9ea7ae;
+$header-icon-color: #6a7c8f;
+$info-view-color: #6a7c8f;
+//font
+$font-size-component: 0.9rem;
+$font-size-small: 0.85rem;
+$font-size-base: 1rem;
+$font-size-middle: 1.2rem;
+$font-size-large: 1.4rem;
+//line-light
+$line-height-base: 1;
+$line-height-component: $line-height-base;
+$line-height-middle: 1.5;
+$line-height-big: 2;
+//Z-index
+$miui-zindex: 100000;
+// z-index list
+$zindex-affix           : 10;
+$zindex-back-top        : 10;
+$zindex-modal-mask      : 1000;
+$zindex-modal           : 1000;
+$zindex-notification    : 1010;
+$zindex-message         : 1010;
+$zindex-popover         : 1030;
+$zindex-picker          : 1050;
+$zindex-dropdown        : 1050;
+$zindex-tooltip         : 1060;
+// Shadow
+$shadow-color           : rgba(0, 0, 0, .2);
+$shadow-1-up            : 0 -1px 6px $shadow-color;
+$shadow-1-down          : 0 1px 6px $shadow-color;
+$shadow-1-left          : -1px 0 6px $shadow-color;
+$shadow-1-right         : 1px 0 6px $shadow-color;
+$shadow-2               : 0 2px 8px $shadow-color;
+
+//box
+$box-shadow-base: $shadow-1-down;
+$box-shadow-two: 0 2px 8px rgba(0, 0, 0, .2);
+//border
+$border-radius-base: 4px;
+$border-radius-sm: 2px;
+$border-width-base: 1px;
+$border-style-base: solid;
+$border-color-base: #e4ebf1;
+$border-color-split: #edf2f6;
+$border-login-color: #dcdee1;
+//background
+$default-background-color: #fff;
+$background-component: $default-background-color;
+$component-background: $background-component;
+$text-view-background: #edf2f6;
+$background-component-black: rgba(35, 32, 32, 0.92);
+$background-color-base: #f7f7f7;// basic gray background
+$background-color-active: #eee;
+//tip-color
+$success-color: #47ae47;
+$success-heavy-color: #00bc0c;
+$primary-color: #2e6fd9;
+$error-color: #f04134;
+$lower-color: #d65945;
+$normal-color: #d9d9d9;
+$info-color: #36f2f7;
+$processing-color: #108ee9;
+$warning-color: #faa121;
+$tip-color: #929292;
+$readed-color: #fafafa;
+$disabled-color: #a5a6aa;
+
+//primary
+$primary-1: color(lighten($primary-color, 3%));  // replace tint($primary-color, 90%)
+$primary-2: color(lighten($primary-color, 6%));  // replace tint($primary-color, 80%)
+$primary-3: color(lighten($primary-color, 9%));
+$primary-4: color(lighten($primary-color, 12%));
+$primary-5: color(lighten($primary-color, 15%));  // replace tint($primary-color, 20%)
+$primary-6: $primary-color;                       // don't use, use $primary-color
+$primary-7: color(lighten($primary-color, 18%));  // replace shade($primary-color, 5%)
+$primary-8: color(lighten($primary-color, 21%));
+$primary-9: color(lighten($primary-color, 24%));
+$primary-10: color(lighten($primary-color, 27%));
+//footer
+$footer-color: #606060;
+$footer-border-heavy-color: #b1b1b1;
+$footer-border-light-color: #f2f2f2;
+
+
+//simple component for example
+//过渡函数-Animation
+$ease-out            : cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in             : cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-out         : cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-out-back       : cubic-bezier(0.12, 0.4, 0.29, 1.46);
+$ease-in-back        : cubic-bezier(0.71, -0.46, 0.88, 0.6);
+$ease-in-out-back    : cubic-bezier(0.71, -0.46, 0.29, 1.46);
+$ease-out-circ       : cubic-bezier(0.08, 0.82, 0.17, 1);
+$ease-in-circ        : cubic-bezier(0.6, 0.04, 0.98, 0.34);
+$ease-in-out-circ    : cubic-bezier(0.78, 0.14, 0.15, 0.86);
+$ease-out-quint      : cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-quint       : cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$ease-in-out-quint   : cubic-bezier(0.86, 0, 0.07, 1);
+
+// Background color for `<body>`
+$body-background        : #fff;
+// Base background color for most components
+$font-family            : "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$code-family            : Consolas, Menlo, Courier, monospace;
+$heading-color          : fade(#000, 85%);
+$text-color-secondary   : fade(#000, 43%);
+$heading-color-dark     : fade(#fff, 97%);
+$text-color-dark        : fade(#fff, 91%);
+$text-color-secondary-dark: fade(#fff, 67%);
+
+//Button Component
+$btn-font-weight        : 500;
+$btn-border-radius-base : $border-radius-base;
+$btn-border-radius-sm   : $border-radius-base;
+
+$btn-primary-color      : $background-component;
+$btn-primary-bg         : $primary-color;
+
+$btn-default-color      : $text-color;
+$btn-default-bg         : $background-component;
+$btn-default-border     : $normal-color;
+
+$btn-danger-color      : $error-color;
+$btn-danger-bg         : $background-component;
+
+$btn-disable-color      : $disabled-color;
+$btn-disable-bg         : #f2f2f2;
+$btn-disable-border     : lighten($btn-disable-color,70%);
+
+$btn-font-size-lg       : 1.32rem;
+$btn-font-size-md      : 1.15rem;
+$btn-font-size-sm       : 1.071rem;
+
+$btn-padding-base       : 0.5rem 1.8rem;
+$btn-padding-lg         : 0.6rem 2.4rem;
+$btn-padding-sm         : 0.65rem 1.35rem;
+
+$btn-circle-size        : 1.6rem;
+$btn-circle-size-lg     : 2.1rem;
+$btn-circle-size-sm     : 1.2rem;
+
+$btn-group-border       : $primary-7;
+// for compatibile
+$btn-ghost-color: $text-color;
+$btn-ghost-bg: transparent;
+$btn-ghost-border: $normal-color;
+
+//Tooltip Component
+$tooltip-arrow-width: 5px;
+$tooltip-distance: 8px;
+$tooltip-max-width: 250px;
+$tooltip-bg: #2b3035;
+$tooltip-arrow-color: rgba(64, 64, 64, 0.85);
+
+//Popover Component
+$popover-arrow-width: 6px;
+$popover-arrow-outer-width: 5px;
+$popover-min-width: 177px;
+$popover-arrow-outer-color: rgba(217, 217, 217, 0.7);
+$popover-color: #fff;
+
+//Loading Component
+$loading-dot-size-sm: 0.92rem;
+$loading-dot-size-md: 1.42rem;
+$loading-dot-size-lg: 2.14rem;
+$loading-dot-default:fade(#000, 43%);
+
+//Badge泡沫小红点
+$badge-height: 20px;
+$badge-dot-size: 8px;
+$highlight-color: #f04134;
+
+//Input输入框
+$input-text-color: #5e676d;
+$placeholder-color: #9ea7ae;
+$input-affix-width: 17px;
+$input-padding-vertical-lg: 6px;
+$input-height-base: 28px;
+$input-height-lg: 32px;
+$input-height-sm: 22px;
+$input-padding-horizontal: 9px;
+$input-padding-vertical-base: 4px;
+$input-padding-vertical-sm: 1px;
+$input-padding-vertical-lg: 6px;
+$input-placeholder-color: #ccc;
+$input-color: fade(#000, 65%);
+$input-border-color: $normal-color;
+$input-hover-border-color: $primary-color;
+$input-disabled-bg: #f7f7f7;
+$input-bg: $background-component;
+$outline-color: $primary-color;
+$outline-blur-size: 0;
+$outline-width: 2px;
+
+//Disabled states
+$disabled-color: fade(#000, 25%);
+$disabled-bg: $background-color-base;
+$disabled-color-dark: fade(#fff, 35%);
+
+//radio components
+$radio-button-bg: $btn-default-bg;
+$radio-button-color: $btn-default-color;
+
+//Notice

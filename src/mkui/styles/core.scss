@@ -1,0 +1,78 @@
+@import 'normalize';
+// Some best-practice CSS that's useful for most apps
+// Just remove them if they're not what you want
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color:#fff;
+  //页面里的字体变清晰
+  -webkit-font-smoothing: antialiased;
+  //启用浏览器文本溢出算法|100%放大
+  -ms-text-size-adjust:100%;
+  -webkit-text-size-adjust:100%;
+  //点击高亮hidden
+  -webkit-tap-highlight-color:transparent;
+  //滚动条-webkit你内核统一样式
+  /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+  ::-webkit-scrollbar {width: 5px; height: 5px; background-color: #F8F8F8; }
+  /*定义滚动条轨道 内阴影+圆角*/
+  ::-webkit-scrollbar-track { background-color: #F5F5F5; }
+  /*定义滑块 内阴影+圆角*/
+  ::-webkit-scrollbar-thumb { background-color: #D0D8DB; }
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+header,footer,section,article {
+  text-align:inherit;
+}
+//kill chrome边框高亮
+input,button,select,textarea{
+  outline: none;
+}
+//chrome右下角边框大小拖动问题
+textarea{
+  resize:none;
+  overflow: hidden;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+select::-ms-expand {
+  /* for IE 11 */
+   display: none;
+}
+
+button{
+  margin:0px;
+  border-radius:0px;
+  outline:none;
+}
+ul li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+//修改chrome记住密码后自动填充表单的黄色背景
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(250, 255, 189); /* #FAFFBD; */
+    background-image: none;
+    color: rgb(0, 0, 0);
+}
+i,img {
+  -webkit-tap-highlight-color: transparent;
+}
